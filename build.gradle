@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+
+        maven {
+            url 'https://github.com/steffenschaefer/gwt-gradle-plugin/raw/maven-repo/'
+        }
+    }
+
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.4'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.5'
+    }
+}
+
+
+project.ext.gwtVersion = '2.6.1'
+
+project.ext.libraries = [
+        'gwt-user': [group: 'com.google.gwt', name: 'gwt-user', version: gwtVersion],
+        'gwt-dev': [group: 'com.google.gwt', name: 'gwt-dev', version: gwtVersion],
+        'gwt-elemental': [group: 'com.google.gwt', name: 'gwt-elemental', version: gwtVersion],
+        'gwt-codeserver': [group: 'com.google.gwt', name: 'gwt-codeserver', version: gwtVersion],
+]
+
+
+subprojects {
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    group = 'com.github.talshani'
+    version = '0.1'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile libraries.'gwt-elemental'
+        compile libraries.'gwt-user'
+//        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
