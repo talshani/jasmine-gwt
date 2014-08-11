@@ -2,9 +2,17 @@ apply plugin: 'java'
 apply plugin: 'gwt-base'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven'
 
 configurations {
     deployerJars
+}
+
+dependencies {
+    // your dependencies
+
+    // to use WebDav protocol on upload
+    deployerJars "org.apache.maven.wagon:wagon-webdav-jackrabbit:2.6"
 }
 
 gwt {
@@ -16,6 +24,14 @@ jar {
     from sourceSets.main.allSource
 }
 
+// handles releases gracefully
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(':release')) {
+        version = versionBase
+    } else {
+        version = versionBase + '-SNAPSHOT'
+    }
+}
 
 publishing {
     publications {
@@ -39,5 +55,26 @@ bintray {
         desc = 'A GWT wrapper for jasmine for testing in browser'
         licenses = ['Apache-2.0']
         labels = ['gwt', 'jasmine', 'testing']
+    }
+}
+
+
+def cloudbeesUsername =  project.hasProperty('cloudbeesUsername') ? project.getProperty('cloudbeesUsername') : '';
+def cloudbeesPassword = project.hasProperty('cloudbeesPassword') ? project.getProperty('cloudbeesPassword') : '';
+def cloudbeesAccountName = 'jasmine-gwt'
+
+uploadArchives {
+    repositories {
+        deployer = mavenDeployer {
+            // you might use this configuration not to generate
+            // date based artefact names
+            // uniqueVersion = false
+            configureAuth = {
+                authentication(userName: cloudbeesUsername, password: cloudbeesPassword)
+            }
+            configuration = configurations.deployerJars
+            snapshotRepository(url: "dav:https://repository-${cloudbeesAccountName}.forge.cloudbees.com/snapshot/", configureAuth)
+            repository(url: "dav:https://repository-${cloudbeesAccountName}.forge.cloudbees.com/release/", configureAuth)
+        }
     }
 }
