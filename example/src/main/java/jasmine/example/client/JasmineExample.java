@@ -14,10 +14,10 @@ public class JasmineExample implements EntryPoint {
     public void onModuleLoad() {
         describe("some test", new DescribeCallback() {
             @Override
-            protected void describe() {
+            protected void doDescribe() {
                 it("should do this thing", new DescribeCallback() {
                     @Override
-                    protected void describe() {
+                    protected void doDescribe() {
                         expect(1).toBe(1);
                     }
                 });
@@ -25,10 +25,10 @@ public class JasmineExample implements EntryPoint {
         });
         describe("some test 2", new DescribeCallback() {
             @Override
-            protected void describe() {
+            protected void doDescribe() {
                 it("should do this thing2", new DescribeCallback() {
                     @Override
-                    protected void describe() {
+                    protected void doDescribe() {
                         expect(2).toBe(1);
                     }
                 });

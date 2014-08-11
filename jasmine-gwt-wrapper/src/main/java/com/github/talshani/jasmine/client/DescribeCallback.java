@@ -12,9 +12,9 @@ public abstract class DescribeCallback extends JasmineCallback {
 
     @Override
     public final void define() {
-        describe();
+        doDescribe();
     }
 
-    protected abstract void describe();
+    protected abstract void doDescribe();
 
 }
