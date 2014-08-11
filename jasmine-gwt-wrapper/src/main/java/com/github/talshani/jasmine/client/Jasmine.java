@@ -63,7 +63,7 @@ public class Jasmine {
     }-*/;
 
     private static native void defineFn(String fn, JasmineCallback define) /*-{
-      $wnd[fn](text, function (done) {
+      $wnd[fn](function (done) {
         $entry(function() {
           var cmd = @com.github.talshani.jasmine.client.DoneCallback::wrapFn(Lcom/google/gwt/core/client/JavaScriptObject;)(done);
           define.@com.github.talshani.jasmine.client.JasmineCallback::callDefine(Lcom/github/talshani/jasmine/client/DoneCallback;)(cmd)

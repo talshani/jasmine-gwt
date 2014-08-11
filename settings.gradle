@@ -1,6 +1,6 @@
 rootProject.name = 'jasmine-gwt'
 
-include 'jasmine'
+include 'jasmine-gwt-wrapper'
 
 include 'example'
 

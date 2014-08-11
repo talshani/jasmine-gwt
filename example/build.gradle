@@ -6,10 +6,10 @@ gwt {
     minHeapSize = "512M";
     maxHeapSize = "1024M";
     modules 'jasmine.example.JasmineExample'
-    src += files(project(':jasmine').sourceSets.main.allJava.srcDirs) + files(project(':jasmine').sourceSets.main.output.resourcesDir)
+    src += files(project(':jasmine-gwt-wrapper').sourceSets.main.allJava.srcDirs) + files(project(':jasmine-gwt-wrapper').sourceSets.main.output.resourcesDir)
 
 }
 
 dependencies {
-    compile project(':jasmine')
+    compile project(':jasmine-gwt-wrapper')
 }

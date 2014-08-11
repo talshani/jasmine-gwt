@@ -3,7 +3,6 @@ apply plugin: 'gwt-base'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-
 configurations {
     deployerJars
 }
@@ -36,7 +35,7 @@ bintray {
     pkg { //package will be created if does not exist
         repo = 'maven'
 //            userOrg = 'myorg' // an optional organization name when the repo belongs to one of the user's orgs
-        name = 'jasmin-gwt'
+        name = 'jasmine-gwt-wrapper'
         desc = 'A GWT wrapper for jasmine for testing in browser'
         licenses = ['Apache-2.0']
         labels = ['gwt', 'jasmine', 'testing']

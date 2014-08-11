@@ -32,7 +32,7 @@ subprojects {
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
     group = 'com.github.talshani'
-    version = '0.1'
+    version = '0.1.1'
 
     repositories {
         mavenCentral()
