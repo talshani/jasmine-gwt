@@ -65,11 +65,11 @@ def cloudbeesAccountName = 'jasmine-gwt'
 
 uploadArchives {
     repositories {
-        deployer = mavenDeployer {
+        mavenDeployer {
             // you might use this configuration not to generate
             // date based artefact names
             // uniqueVersion = false
-            configureAuth = {
+            def configureAuth = {
                 authentication(userName: cloudbeesUsername, password: cloudbeesPassword)
             }
             configuration = configurations.deployerJars
