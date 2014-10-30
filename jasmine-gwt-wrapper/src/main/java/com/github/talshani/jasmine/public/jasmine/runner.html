@@ -14,9 +14,6 @@
 </head>
 
 <body>
-<div>
-    <button id="compile">Compile</button>
-</div>
 
 <div id="unit"></div>
 
@@ -24,19 +21,10 @@
     (function () {
         var moduleName = /^[^:]+:\/\/[^/]+\/([^/]+)/.exec(location.href)[1];
         var script = document.createElement('script');
-        script.src = '/' + moduleName + '/' + moduleName + '.nocache.js';
+        script.src = '/' + moduleName + '/' + moduleName + '.recompile.nocache.js';
         script.type = 'text/javascript';
         script.language = 'javascript';
         document.head.appendChild(script);
-
-        var btn = document.getElementById('compile');
-        btn.addEventListener('click', function () {
-            var serverUrl = /[^\/]+\/\/[^\/]+\//.exec(location.href)[0];
-            window.__gwt_bookmarklet_params = {server_url: serverUrl, module_name: moduleName};
-            var s = document.createElement('script');
-            s.src = serverUrl + 'dev_mode_on.js';
-            void(document.getElementsByTagName('head')[0].appendChild(s));
-        })
     })();
 
 </script>

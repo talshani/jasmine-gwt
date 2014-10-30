@@ -29,7 +29,7 @@ public class JasmineExample implements EntryPoint {
                 it("should do this thing2", new DescribeCallback() {
                     @Override
                     protected void doDescribe() {
-                        expect(2).toBe(1);
+                        expect(2).toBe(2);
                     }
                 });
             }

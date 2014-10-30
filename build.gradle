@@ -15,7 +15,7 @@ buildscript {
 }
 
 
-project.ext.gwtVersion = '2.6.1'
+project.ext.gwtVersion = '2.7.0-rc1'
 
 project.ext.libraries = [
         'gwt-user': [group: 'com.google.gwt', name: 'gwt-user', version: gwtVersion],
@@ -38,7 +38,6 @@ subprojects {
     }
 
     dependencies {
-        compile libraries.'gwt-elemental'
         compile libraries.'gwt-user'
 //        testCompile group: 'junit', name: 'junit', version: '4.11'
     }
@@ -46,5 +45,9 @@ subprojects {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '2.1'
+}
+
+task release() {
+
 }

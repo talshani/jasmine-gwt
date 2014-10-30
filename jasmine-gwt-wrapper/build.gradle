@@ -24,16 +24,17 @@ jar {
     from sourceSets.main.allSource
 }
 
-def versionBase = '0.1.2' 
+def versionBase = '0.1.2'
+version = versionBase;
 
 // handles releases gracefully
-gradle.taskGraph.whenReady {taskGraph ->
-    if (taskGraph.hasTask(':release')) {
-        version = versionBase
-    } else {
-        version = versionBase + '-SNAPSHOT'
-    }
-}
+//gradle.taskGraph.whenReady {taskGraph ->
+//    if (taskGraph.hasTask(':release')) {
+//        version = versionBase
+//    } else {
+//        version = versionBase + '-SNAPSHOT'
+//    }
+//}
 
 publishing {
     publications {
@@ -57,6 +58,10 @@ bintray {
         desc = 'A GWT wrapper for jasmine for testing in browser'
         licenses = ['Apache-2.0']
         labels = ['gwt', 'jasmine', 'testing']
+
+        version {
+            name = versionBase
+        }
     }
 }
 
